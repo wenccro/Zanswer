@@ -1,0 +1,15 @@
+res.status(500).json({"result":0,"err":"服务器出现错误"});
+res.status(404).json({"result":0,"err":"学生ID找不到"});
+res.status(400).json({"result":0,"err":"不合法的学生ID"});
+
+
+flag++;
+if(flag==myInfo.allPeopleDetail.length){
+	resolve();
+}
+
+
+
+改： 涉及到的表有 试题表  做题详情表
+1.章节信息后面的正确率  计算方式 选择 填空 判断 改错分别算
+2.			

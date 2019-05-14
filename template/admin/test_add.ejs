@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>试题增加</title>
+		
+		<!--自己的css/js-->
+  		<script src="../js/answer.js" type="text/javascript"></script>
+    	<link rel="stylesheet" type="text/css" href="../css/answer.css" />
+    	
+    	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+    	<script src="../js/jquery.min.js" type="text/javascript"></script>
+    	<script src="../js/bootstrap.min.js" type="text/javascript"></script>
+    	
+		<!--引入富文本比较器的js-->
+		<script type="text/javascript" charset="UTF-8" src="../ueditor/ueditor.config.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../ueditor/ueditor.all.min.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../ueditor/lang/zh-cn/zh-cn.js"></script>
+		
+		 <meta name="viewport" content="width=device-width, initial-scale=1">
+    	 <link rel="stylesheet" href="../css/bootstrap.tu.css">  
+    	 
+    	 <!--jquery ui-->
+	  	 <link rel="stylesheet" href="../css/jquery-ui.css">
+	  	 <link rel="stylesheet" href="../css/style.css">
+		 <script src="../js/jquery-1.11.3.js"></script>
+		 <script src="../js/jquery-ui.js"></script>
+    	
+	</head>
+	<body>
+		<div>
+		<a href="/admin" class="btn btn-info btn-lg">
+      		<span class="glyphicon glyphicon-share-alt"></span> 返回
+        </a>
+		</div>
+		<div class="ti_s_add-page">
+			<h3 class="text-center">试题管理-增加</h3>
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+				    <label for="inputPassword" class="col-sm-2 control-label">课程名称</label>
+				    <div class="col-sm-8">
+				    	<!--动态添加课程-->
+				      <select class="select_kx" ></select>
+				    </div>
+			  	</div>
+			  	<div class="form-group">
+				    <label for="inputPassword" class="col-sm-2 control-label">章节名称</label>
+				    <div class="col-sm-8">
+				    	<!--动态添加章节-->
+				      <select class="select_zj" ></select>
+				    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword" class="col-sm-2 control-label">题目</label>
+			    <div class="col-sm-8">
+					<textarea id="content_ti" name="re_content" style="height: 200px; width: 590px;"></textarea>
+					<!--实例化一个富文本框-->
+					<script type="text/javascript">
+						var ue=UE.getEditor('content_ti');
+					</script>
+				</div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword" class="col-sm-2 control-label">选项-A</label>
+			    <div class="col-sm-8">
+					<textarea id="content_a" name="re_content" style="height: 200px; width: 590px;"></textarea>
+					<!--实例化一个富文本框-->
+					<script type="text/javascript">
+						var ue=UE.getEditor('content_a');
+					</script>
+				</div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword" class="col-sm-2 control-label">B</label>
+			    <div class="col-sm-8">
+					<textarea id="content_b" name="re_content" style="height: 200px; width: 590px;"></textarea>
+					<!--实例化一个富文本框-->
+					<script type="text/javascript">
+						var ue=UE.getEditor('content_b');
+					</script>
+				</div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword" class="col-sm-2 control-label">C</label>
+			    <div class="col-sm-8">
+					<textarea id="content_c" name="re_content" style="height: 200px; width: 590px;"></textarea>
+					<!--实例化一个富文本框-->
+					<script type="text/javascript">
+						var ue=UE.getEditor('content_c');
+					</script>
+				</div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword" class="col-sm-2 control-label">D</label>
+			    <div class="col-sm-8">
+					<textarea id="content_d" name="re_content" style="height: 200px; width: 590px;"></textarea>
+					<!--实例化一个富文本框-->
+					<script type="text/javascript">
+						var ue=UE.getEditor('content_d');
+					</script>
+				</div>
+			  </div>
+			  <div class="form-group">
+				    <label for="inputPassword" class="col-sm-2 control-label">正确答案</label>
+				    <div class="col-sm-8">
+				      <select class="select_at" >
+						<option value="A">A</option>
+						<option value='B'>B</option>
+						<option value='C'>C</option>
+						<option value='D'>D</option>
+					  </select>
+				    </div>
+			  	</div>
+			  	<div class="form-group">
+				    <label for="inputPassword" class="col-sm-2 control-label">解析</label>
+				    <div class="col-sm-8">
+						<textarea id="content2" name="re_content" style="height: 200px; width: 590px;"></textarea>
+						<!--实例化一个富文本框-->
+						<script type="text/javascript">
+							var ue=UE.getEditor('content2');
+						</script>
+					</div>
+			  	</div>
+			</form>
+			<div class="cz">
+	            <button class="btn btn-default t_save">保存</button>
+	            <button class="quxiao btn btn-default"><a href="/admin" style="color:#000; text-decoration: none;">取消</a></button>
+      		</div>
+		</div>
+		
+		<script>
+			(function(){
+				//上来就是拉去服务器上的试题内容
+				console.log(5858);
+				$.ajax({
+					type:"checkout",
+					url:"/admin/test_add",
+					async:true,
+					success:function(data){
+						console.log(data.data);
+						//为章节框绑定事件，
+						//获取课程的值，并找到对应的课程iD，相应生产对应的章节数组。
+						var courseS=[];//将添加的课程都归结到这里
+						var sectionS=[];//将添加的章节归纳到这里
+						//动态添加课程
+						for(var i=0;i<data.data.length;i++){
+							var tt=courseS.indexOf(data.data[i].c_name);//数组里没有是-1
+							if(tt==-1){
+								courseS.push(data.data[i].c_name)
+							}
+						}
+						//将每一科目的现有章节归集到相应的数组中
+						for(var w=0;w<courseS.length;w++){
+							sectionS[w]=[];
+							for(var z=0;z<data.data.length;z++){
+								if(data.data[z].c_name==courseS[w]){
+									var tt=sectionS[w].indexOf(data.data[z].ch_num);//数组里没有是-1
+									if(tt==-1){
+										sectionS[w].push(data.data[z].ch_num);
+									}
+								}
+							}
+						}
+						
+						//console.log(courseS);
+						//console.log(sectionS);
+						//将之前添加的课程去掉
+						$(".select_kx").text('');
+						for(var j=0;j<courseS.length;j++){
+							$(".select_kx").append("<option value="+(j-1)+">"+courseS[j]+"</option>");
+						}
+						//将之前添加的章节去掉
+						$(".select_zj").text('');
+						//默认添加第一个课程的章节
+						var ff=parseInt($(".select_kx:first option:selected").val())+1;//拿到第一个课程的数组角标
+						for(var j=0;j<sectionS[ff].length;j++){
+							$(".select_zj").append("<option value="+(j-1)+">"+'第'+sectionS[ff][j]+'章'+"</option>");
+						}
+						//为课程框绑定事件监听
+						$(".select_kx").click(function(){
+							$(".select_zj").text('');//去掉之前添加的
+							var yy=parseInt($(".select_kx option:selected").val())+1;//拿到选择状态下的课程角标
+							for(var j=0;j<sectionS[yy].length;j++){
+								$(".select_zj").append("<option value="+(j-1)+">"+'第'+sectionS[yy][j]+'章'+"</option>");
+							}
+						})
+						//当点击保存的时候，获取章节id
+						$(".t_save").click(function(){
+							var cou_i=parseInt($(".select_kx option:selected").val())+1;
+							var cou_name=courseS[cou_i];//拿到所选课程的name
+							var z_i=parseInt($(".select_zj option:selected").val())+1;
+							var z_num=sectionS[cou_i][z_i];//拿到所选课程相对应章节的num数
+							var z_id=null;
+							for(var i=0;i<data.data.length;i++){
+								if(data.data[i].c_name==cou_name&&data.data[i].ch_num==z_num){
+									z_id=data.data[i].z_id;
+								}
+							}
+							//拿到试题的具体内容
+							var title=UE.getEditor('content_ti').getContent();//带格式内容,题目
+							var t_a=UE.getEditor('content_a').getContent();//带格式，选项a
+							var t_b=UE.getEditor('content_b').getContent();//带格式,选项b
+							var t_c=UE.getEditor('content_c').getContent();//带格式,选项c
+							var t_d=UE.getEditor('content_d').getContent();//带格式,选项d
+							var t_an=$(".select_at option:selected").val();//拿到正确答案
+							var t_ex=UE.getEditor('content2').getContent();//带格式，解析
+
+							if(title!=''&&t_a!=''&&t_b!=''&&t_c!=''&&t_d!=''&&t_an!=''){
+								$.ajax({
+									type:"post",
+									url:"/admin/test_add",
+									data:{
+										"z_id":z_id,
+										"title":title,
+										"t_a":t_a,
+										"t_b":t_b,
+										"t_c":t_c,
+										"t_d":t_d,
+										"t_an":t_an,
+										"t_ex":t_ex
+									},
+									async:true,
+									success:function(data){
+										if(data.result==1){
+											alert("添加成功");
+											//清除之前的题目，内容
+											UE.getEditor('content_ti').setContent('');
+											UE.getEditor('content_a').setContent('');
+											UE.getEditor('content_b').setContent('');
+											UE.getEditor('content_c').setContent('');
+											UE.getEditor('content_d').setContent('');
+											UE.getEditor('content2').setContent('');
+										}else{
+											alert("添加失败");
+											//清除之前的题目，内容
+											UE.getEditor('content_ti').setContent('');
+											UE.getEditor('content_a').setContent('');
+											UE.getEditor('content_b').setContent('');
+											UE.getEditor('content_c').setContent('');
+											UE.getEditor('content_d').setContent('');
+											UE.getEditor('content2').setContent('');
+										}
+									}
+								});
+							}else{
+								alert("题目和选项不能为空");
+							}
+						})
+						
+					}//上来拉取数据的success:function(data)
+				});
+			})()
+		</script>
+	</body>
+</html>

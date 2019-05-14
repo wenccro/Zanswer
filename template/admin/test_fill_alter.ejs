@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>填空题修改</title>
+		
+		<!--自己的css/js-->
+    	<link rel="stylesheet" type="text/css" href="../css/answer.css" />
+    	
+    	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+    	<script src="../js/jquery.min.js" type="text/javascript"></script>
+    	<script src="../js/bootstrap.min.js" type="text/javascript"></script>
+    	
+    	<!--富文本-->
+	  	<script type="text/javascript" charset="UTF-8" src="/ueditor/ueditor.config.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="/ueditor/ueditor.all.min.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+		
+		 <meta name="viewport" content="width=device-width, initial-scale=1">
+    	 <link rel="stylesheet" href="../css/bootstrap.tu.css">  
+    	
+    	<!--jquery ui-->
+	  	 <link rel="stylesheet" href="../css/jquery-ui.css">
+	  	 <link rel="stylesheet" href="../css/style.css">
+		 <script src="../js/jquery-1.11.3.js"></script>
+		 <script src="../js/jquery-ui.js"></script>
+	</head>
+	<body>
+		<div>
+			<a href="/admin" class="btn btn-info btn-lg">
+          		<span class="glyphicon glyphicon-share-alt"></span> 返回
+        	</a>
+		</div>
+		<div class="ti_t_add-page">
+			<h3 class="text-center">填空试题管理-修改</h3>
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+				    <label for="inputPassword" class="col-sm-2 control-label">课程名称</label>
+				    <div class="col-sm-8">
+				     	<span class="c_name test_x"></span> 
+				    </div>
+			  	</div>
+			  	<div class="form-group">
+				    <label for="inputPassword" class="col-sm-2 control-label">章节名称</label>
+				    <div class="col-sm-8">
+				     <span class="ch_name test_x"></span>
+				    </div>
+			  	</div>
+				<div class="form-group">
+				    <label for="inputPassword" class="ti_biao col-sm-2 control-label">题目</label>
+				    <div class="col-sm-8">
+						<textarea id="content_tian"  style="height: 200px; width: 590px;"></textarea>
+						<!--实例化一个富文本框-->
+						<script type="text/javascript">
+							var ue=UE.getEditor('content_tian');
+						</script>
+					</div>
+				</div>
+				<!--添加答案区域-->
+				<div class="test_answer" >
+					<!--<div class="form-group ans_1" >
+						<label for="inputPassword" class="col-sm-2 control-label item_an">第<i>1</i>空</label>
+					    <div class="col-sm-9 eve_fill">
+					    	<div class="fill_input ans_1" data-id="1">
+								<div>答案<i>1</i><input class="text_an "></input><span class="glyphicon glyphicon-remove gl_color">删除</span></div>
+							</div>
+							<p class="add_eve_answer">添加答案</p>
+						</div>
+						<span class="glyphicon glyphicon-remove fill_color"></span>
+					</div>-->
+				</div>
+				<!--解释区域-->
+				<div class="form-group">
+				    <label for="inputPassword" class="ti_biao col-sm-2 control-label">解析</label>
+				    <div class="col-sm-8">
+						<textarea id="content3" name="re_content" style="height: 150px; width: 590px;"></textarea>
+						<!--实例化一个富文本框-->
+						<script type="text/javascript">
+							var ue3=UE.getEditor('content3');
+						</script>
+					</div>
+			  	</div>
+			</form>
+			<div class="cz">
+	            <button class="btn btn-default tian_alter">修改</button>
+	            <button class="quxiao btn btn-default"><a href="/admin" style="color:#000; text-decoration: none;">取消</a></button>
+      		</div>
+		</div>
+		<script>
+			(function(){
+				var reg = new RegExp(/[^=]+/g);//^以什么开头，匹配全部   
+				var r = window.location.search.substr(1).match(reg); 
+				var t_id=parseInt(r[1]);
+				//发送id去拉去相应的数据
+				$.ajax({
+					type:"post",
+					url:"/admin/test_fill_alter",
+					data:{"t_id":t_id},
+					async:true,
+					success:function(data){
+						//console.log(data);
+						if(data.result==1){
+							$(".c_name").text(data.data[0].c_name);
+							$(".ch_name").text(data.data[0].ch_name);
+							//题目
+							ue.ready(function() { 
+								ue.setContent(data.data[0].t_title); 
+							});
+							//解析
+							ue3.ready(function(){
+								ue3.setContent(data.data[0].t_explain);
+							})
+							var answer=data.data[0].t_answer;//拿到拼接的答案
+							var fill_count=data.data[0].t_count;//拿到总空数
+							var ans_all=answer.split('*out*');//将每一个空给解出来
+							var input_all=new Array();//拿到具体的每一个空的内容
+							for(var i=0;i<ans_all.length;i++){
+								input_all[i]=ans_all[i].split('*in*');
+							}
+							//先创建相对应的空数节点,再将对应的input内容写进去
+							for(var i=0;i<fill_count;i++){
+								$(".test_answer").append("<div class='form-group ans_"+(i+1)+"'><label class='col-sm-2 control-label item_an'>第<i>"+(i+1)+"</i>空</label><div class='col-sm-9 eve_fill'><div class='fill_input ans_"+(i+1)+"' data-id="+(i+1)+"></div><p class='add_eve_answer'>添加答案</p></div></div>");
+								//添加具体的每一空的答案
+								for(var j=0;j<input_all[i].length;j++){
+									$(".test_answer>div:eq("+i+")>div.eve_fill>div").append("<div>答案<i>"+(j+1)+"</i><input class='text_an'><span class='glyphicon glyphicon-remove gl_color'>删除</span></div>");
+									$(".test_answer>div:eq("+i+")>div.eve_fill>div>div:eq("+j+")>input").val(input_all[i][j]);
+								}
+							}
+							//删除节点
+							//为每一空的不同答案 删除绑定事件
+							var child_num=1;//用来记录答案数量
+							$(".test_answer").on("click",".gl_color",function(e){
+								child_num=$(this).parent().parent()[0].childElementCount;//留住总数量
+								var class_biao=$(this).parent().parent()[0].dataset.id;//拿到具体要操作的那一个空
+								if(child_num!=1){
+									$(this).parent().remove();//删除节点
+									//遍历这一空将里面的i的内容更改
+									child_num--;
+									for(var i=0;i<=child_num;i++){
+										$(".ans_"+class_biao+">div:eq("+i+")>i").html((i));
+									}
+								}else{
+									alert("每一空必须有一个答案");
+								}
+							})
+//							
+							//为每一空添加不同的答案,on 是为将来绑定事件
+							$(".test_answer").on("click",".add_eve_answer" ,function(e){
+								var jj=$(this).siblings()[0].dataset.id;//获取所点击的空区域
+								var eve_num=parseInt($(".ans_"+jj+">div:last-child>i").html());//获取目前每一个空里面的最后的i答案
+								$(".eve_fill>div.ans_"+jj).append("<div>答案<i></i><input class='text_an'><span class='glyphicon glyphicon-remove gl_color'>删除</span></div>");
+								$(".ans_"+jj+">div:last-child>i").html((eve_num+1));//添加标题
+							});
+							//当点击修改的时候获取内容
+							$(".tian_alter").click(function(){
+								var title=UE.getEditor('content_tian').getContent();//拿到题目内容
+								var t_ex=UE.getEditor('content3').getContent();//带格式，解析
+								var t_answer='';//拿到拼接好的答案
+								var t_vill=1;//判断每一个空都不为空时
+								var answer_all=new Array();
+								for(var i=0;i<fill_count;i++){
+									answer_all[i]=new Array();
+									var answer_num=$("div.eve_fill>div.ans_"+(i+1)).children().length;//拿到每一个空的不同答案数量
+									for(var j=0;j<answer_num;j++){
+										answer_all[i][j]=$("div.eve_fill>div.ans_"+(i+1)+">div:eq("+j+")>input").val();
+									}
+								}
+								//将结果拼接成一个字符串
+								for(var i=0;i<answer_all.length;i++){
+									for(var j=0;j<answer_all[i].length;j++){
+										//留住空位置
+										if(answer_all[i][j].length==0){
+												t_vill=0;
+										}
+										if(j==answer_all[i].length-1){
+											t_answer+=answer_all[i][j];
+										}else{
+											t_answer+=answer_all[i][j]+"*in*";
+										}
+									}
+									if(i!=answer_all.length-1){
+										t_answer+="*out*";
+									}
+								}
+								//不为空时可以修改
+								if(t_vill&&title!=''){
+									$.ajax({
+										type:"post",
+										url:"/admin/test_t_alter",
+										async:true,
+										data:{
+											"t_id":t_id,
+											"t_title":title,
+											"t_an":t_answer,
+											"t_ex":t_ex
+										},
+										success:function(data){
+											if(data.result==1){
+												alert("修改成功");
+												window.location='/admin'
+											}else{
+												alert("修改失败");
+												window.location='/admin'
+											}
+										}
+									});
+								}else{
+									alert("题目和空不能为空");
+								}
+							})
+						}else{
+							alert('服务器出错了');
+						}
+					}//function(data){
+				});
+			})()
+		</script>
+	</body>
+</html>

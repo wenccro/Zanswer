@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>填空题试题增加</title>
+		
+		<link rel="stylesheet" type="text/css" href="../css/answer.css" />
+    	
+    	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+    	<script src="../js/jquery.min.js" type="text/javascript"></script>
+    	<script src="../js/bootstrap.min.js" type="text/javascript"></script>
+    	
+		<!--引入富文本比较器的js-->
+		<script type="text/javascript" charset="UTF-8" src="../ueditor/ueditor.config.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../ueditor/ueditor.all.min.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../ueditor/lang/zh-cn/zh-cn.js"></script>
+		
+		 <meta name="viewport" content="width=device-width, initial-scale=1">
+    	 <link rel="stylesheet" href="../css/bootstrap.tu.css"> 
+    	 
+    	 <!--jquery ui-->
+	  	 <link rel="stylesheet" href="../css/jquery-ui.css">
+	  	 <link rel="stylesheet" href="../css/style.css">
+		 <script src="../js/jquery-1.11.3.js"></script>
+		 <script src="../js/jquery-ui.js"></script>
+	</head>
+	<body>
+		<div>
+			<a href="/admin" class="btn btn-info btn-lg">
+	      		<span class="glyphicon glyphicon-share-alt"></span> 返回
+	        </a>
+		</div>
+		<div class="ti_t_add-page">
+			<h3 class="text-center">填空试题管理-增加</h3>
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+				    <label for="inputPassword" class="col-sm-2 control-label">课程名称</label>
+				    <div class="col-sm-8">
+				    	<!--动态添加课程-->
+				      <select class="select_kx" ></select>
+				    </div>
+			  	</div>
+			  	<div class="form-group">
+				    <label for="inputPassword" class="col-sm-2 control-label">章节名称</label>
+				    <div class="col-sm-8">
+				    	<!--动态添加章节-->
+				      <select class="select_zj" ></select>
+				    </div>
+			  	</div>
+				<div class="form-group">
+				    <label for="inputPassword" class="ti_biao col-sm-2 control-label">题目</label>
+				    <div class="col-sm-8">
+						<textarea id="content_tian"  style="height: 200px; width: 590px;"></textarea>
+						<!--实例化一个富文本框-->
+						<script type="text/javascript">
+							var ue=UE.getEditor('content_tian');
+						</script>
+					</div>
+				</div>
+				<!--添加答案区域-->
+				<div class="test_answer" >
+					<!--每一个空的-->
+					<div class="form-group ans_1" >
+						<label for="inputPassword" class="col-sm-2 control-label item_an">第<i>1</i>空</label>
+					    <!--每一空不同答案-->
+					    <div class="col-sm-9 eve_fill">
+					    	<div class="fill_input ans_1" data-id="1">
+								<div>答案<i>1</i><input class="text_an "></input><span class="glyphicon glyphicon-remove gl_color">删除</span></div>
+							</div>
+							<p class="add_eve_answer">添加答案</p>
+						</div>
+						<!--每一空不同答案结束-->
+						<span class="glyphicon glyphicon-remove fill_color"></span>
+					</div>
+					<!--每一空的结束-->
+				</div>
+				<div class="add_answer" style="margin-bottom: 20px;">下一空</div>
+				<!--解释区域-->
+				<div class="form-group">
+				    <label for="inputPassword" class="ti_biao col-sm-2 control-label">解析</label>
+				    <div class="col-sm-8">
+						<textarea id="content3" name="re_content" style="height: 150px; width: 590px;"></textarea>
+						<!--实例化一个富文本框-->
+						<script type="text/javascript">
+							var ue=UE.getEditor('content3');
+						</script>
+					</div>
+			  	</div>
+			</form>
+			<div class="cz">
+	            <button class="btn btn-default tian_save">保存</button>
+	            <button class="quxiao btn btn-default"><a href="/admin" style="color:#000; text-decoration: none;">取消</a></button>
+      		</div>
+		</div>
+		<script>
+			(function(){
+				//为答案的编辑添加内容
+				//为添加答案绑定事件,这是一整空的
+				$(".add_answer").click(function(){
+					//获取最后一个孩子的答案题目里面的内容
+					var an_num=parseInt($(".test_answer>div:last-child>label>i").html());
+					//重新插入一个节点
+					$(".test_answer").append("<div class='form-group'><label for='inputPassword' class='col-sm-2 control-label item_an'>第<i></i>空</label><div class='col-sm-9 eve_fill'><div class='fill_input'><div>答案<i>1</i><input class='text_an'><span class='glyphicon glyphicon-remove gl_color'>删除</span></div></div><p class='add_eve_answer'>添加答案</p></div><span class='glyphicon glyphicon-remove fill_color'></span></div>");
+					$(".test_answer>div:last-child").addClass("ans_"+(an_num+1));//添加特有属性，每一空
+					$(".test_answer>div:last-child>div.eve_fill>div").attr("data-id",(an_num+1));//添加data-id属性
+					$(".test_answer>div:last-child div.fill_input").addClass("ans_"+(an_num+1));//为每一空里面的答案添加属性
+					$(".ans_"+(an_num+1)+">label>i").html((an_num+1));//标题添加
+				});
+				//为每一空添加不同的答案,on 是为将来绑定事件
+				$(".test_answer").on("click",".add_eve_answer" ,function(e){
+					var jj=$(this).siblings()[0].dataset.id;//获取所点击的空区域
+					var eve_num=parseInt($(".ans_"+jj+">div:last-child>i").html());//获取目前每一个空里面的最后的i答案
+					$(".eve_fill>div.ans_"+jj).append("<div>答案<i></i><input class='text_an'><span class='glyphicon glyphicon-remove gl_color'>删除</span></div>");
+					$(".ans_"+jj+">div:last-child>i").html((eve_num+1));//添加标题
+				})
+				//为每一空的不同答案 删除绑定事件
+				var child_num=1;//用来记录答案数量
+				$(".test_answer").on("click",".gl_color",function(e){
+					child_num=$(this).parent().parent()[0].childElementCount;//留住总数量
+					var class_biao=$(this).parent().parent()[0].dataset.id;//拿到具体要操作的那一个空
+					if(child_num!=1){
+						$(this).parent().remove();//删除节点
+						//遍历这一空将里面的i的内容更改
+						child_num--;
+						for(var i=0;i<=child_num;i++){
+							$(".ans_"+class_biao+">div:eq("+i+")>i").html((i));
+						}
+					}else{
+						alert("每一空必须有一个答案");
+					}
+				})
+				//为每一个空的    删除绑定事件
+				var fill_child=1;//用来记录有多少空
+				$(".test_answer").on("click",".fill_color",function(e){
+					fill_child=$(this).parent().parent()[0].childElementCount;//留住总数量
+					if(fill_child!=1){
+						$(this).parent().remove();//删除节点
+						//遍历这一空将里面的i的内容更改
+						fill_child--;
+						for(var i=0;i<=fill_child;i++){
+							$(".test_answer>div:eq("+i+")>label>i").html((i+1));
+						}
+					}else{
+						alert("每一题必须有一空");
+					}
+				});
+				//上来就是拉去服务器上的试题内容
+				$.ajax({
+					type:"checkout",
+					url:"/admin/test_add",
+					async:true,
+					success:function(data){
+						//为章节框绑定事件，
+						//获取课程的值，并找到对应的课程iD，相应生产对应的章节数组。
+						var courseS=[];//将添加的课程都归结到这里
+						var sectionS=[];//将添加的章节归纳到这里
+						//动态添加课程
+						for(var i=0;i<data.data.length;i++){
+							var tt=courseS.indexOf(data.data[i].c_name);//数组里没有是-1
+							if(tt==-1){
+								courseS.push(data.data[i].c_name)
+							}
+						}
+						//将每一科目的现有章节归集到相应的数组中
+						for(var w=0;w<courseS.length;w++){
+							sectionS[w]=[];
+							for(var z=0;z<data.data.length;z++){
+								if(data.data[z].c_name==courseS[w]){
+									var tt=sectionS[w].indexOf(data.data[z].ch_num);//数组里没有是-1
+									if(tt==-1){
+										sectionS[w].push(data.data[z].ch_num);
+									}
+								}
+							}
+						}
+						//将之前添加的课程去掉
+						$(".select_kx").text('');
+						for(var j=0;j<courseS.length;j++){
+							$(".select_kx").append("<option value="+(j-1)+">"+courseS[j]+"</option>");
+						}
+						//将之前添加的章节去掉
+						$(".select_zj").text('');
+						//默认添加第一个课程的章节
+						var ff=parseInt($(".select_kx:first option:selected").val())+1;//拿到第一个课程的数组角标
+						for(var j=0;j<sectionS[ff].length;j++){
+							$(".select_zj").append("<option value="+(j-1)+">"+'第'+sectionS[ff][j]+'章'+"</option>");
+						}
+						//为课程框绑定事件监听
+						$(".select_kx").click(function(){
+							$(".select_zj").text('');//去掉之前添加的
+							var yy=parseInt($(".select_kx option:selected").val())+1;//拿到选择状态下的课程角标
+							for(var j=0;j<sectionS[yy].length;j++){
+								$(".select_zj").append("<option value="+(j-1)+">"+'第'+sectionS[yy][j]+'章'+"</option>");
+							}
+						})
+						//当点击保存的时候，获取章节id
+						$(".tian_save").click(function(){
+							var cou_i=parseInt($(".select_kx option:selected").val())+1;
+							var cou_name=courseS[cou_i];//拿到所选课程的name
+							var z_i=parseInt($(".select_zj option:selected").val())+1;
+							var z_num=sectionS[cou_i][z_i];//拿到所选课程相对应章节的num数
+							var z_id=null;//拿到章节id
+							for(var i=0;i<data.data.length;i++){
+								if(data.data[i].c_name==cou_name&&data.data[i].ch_num==z_num){
+									z_id=data.data[i].z_id;
+								}
+							}
+							//获取填入的内容
+							var title=UE.getEditor('content_tian').getContent();//拿到题目内容
+							var	fill_kong=$(".test_answer").children().length;//拿到有多少个空
+							var t_ex=UE.getEditor('content3').getContent();//带格式，解析
+							var t_answer='';//拿到拼接好的答案
+							var t_vill=1;//判断每一个空都不为空时
+							var answer_all=new Array();
+							for(var i=0;i<fill_kong;i++){
+								answer_all[i]=new Array();
+								var answer_num=$("div.eve_fill>div.ans_"+(i+1)).children().length;//拿到每一个空的不同答案
+								for(var j=0;j<answer_num;j++){
+									answer_all[i][j]=$("div.eve_fill>div.ans_"+(i+1)+">div:eq("+j+")>input").val();
+								}
+							}
+							//将结果拼接成一个字符串
+							for(var i=0;i<answer_all.length;i++){
+								for(var j=0;j<answer_all[i].length;j++){
+									//留住空位置
+									if(answer_all[i][j].length==0){
+											t_vill=0;
+									}
+									if(j==answer_all[i].length-1){
+										t_answer+=answer_all[i][j];
+									}else{
+										t_answer+=answer_all[i][j]+"*in*";
+									}
+								}
+								if(i==answer_all.length-1){
+									//t_answer
+								}else{
+									t_answer+="*out*";
+								}
+							}
+							//题目不能为空，每一个空的内容不能为空
+							if(t_vill&&title!=''){
+								//发送sjsx
+								$.ajax({
+									type:"post",
+									url:"/admin/test_t_add",
+									async:true,
+									data:{
+										"t_title":title,
+										"t_answer":t_answer,
+										"t_explain":t_ex,
+										"blank_count":fill_kong,
+										"ch_ID":z_id
+									},
+									success:function(data){
+										if(data.result==1){
+											alert("添加成功");
+											//清空之前填入的信息
+											UE.getEditor('content_tian').setContent('');//清空题干
+											UE.getEditor('content3').setContent('');//清空解析
+											//清空答案区域
+											var answer_num=$("div.eve_fill>div.ans_1").children().length;//拿到第一个空的孩子数量
+											if(fill_kong>1){
+												//删除到只剩下一个空
+												for(var i=1;i<=fill_kong;i++){//remove 移除以后节点会自动补齐，所以只要一直删除第一个节点位置的数就可以了
+													$(".test_answer>div.form-group:eq(1)").remove();//删除第一空以外的全部空
+												}
+												//在将一个空里面的信息删除的只剩一个空
+												for(var j=1;j<answer_num;j++){
+													$("div.eve_fill>div.ans_1>div:eq(1)").remove();//删除答案1以外的全部答案
+												}
+												//在将第一个空的第一个答案的input清空
+												$("div.eve_fill>div.ans_1>div>input").val('');
+											}else{
+												for(var j=1;j<answer_num;j++){
+													$("div.eve_fill>div.ans_1>div:eq(1)").remove();//删除答案1以外的全部答案
+												}
+												//在将第一个空的第一个答案的input清空
+												$("div.eve_fill>div.ans_1>div>input").val('');
+											}
+										}else{
+											alert("添加失败");
+											//清空之前填入的信息
+											UE.getEditor('content_tian').setContent('');//清空题干
+											UE.getEditor('content3').setContent('');//清空解析
+											//清空答案区域
+											var answer_num=$("div.eve_fill>div.ans_1").children().length;//拿到第一个空的孩子数量
+											console.log(fill_kong+"空数");
+											if(fill_kong>1){
+												//删除到只剩下一个空
+												for(var i=1;i<=fill_kong;i++){//remove 移除以后节点会自动补齐，所以只要一直删除第一个节点位置的数就可以了
+													$(".test_answer>div.form-group:eq(1)").remove();//删除第一空以外的全部空
+												}
+												//在将一个空里面的信息删除的只剩一个空
+												for(var j=1;j<answer_num;j++){
+													$("div.eve_fill>div.ans_1>div:eq(1)").remove();//删除答案1以外的全部答案
+												}
+												//在将第一个空的第一个答案的input清空
+												$("div.eve_fill>div.ans_1>div>input").val('');
+											}else{
+												for(var j=1;j<answer_num;j++){
+													$("div.eve_fill>div.ans_1>div:eq(1)").remove();//删除答案1以外的全部答案
+												}
+												//在将第一个空的第一个答案的input清空
+												$("div.eve_fill>div.ans_1>div>input").val('');
+											}
+										}
+									}
+								});
+							}else{
+								alert("题目和空不能为空")
+							}
+						});	
+					}//上来拉取数据的success:function(data)
+				});
+			})()
+		</script>
+	</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="/js/jquery-1.11.3.js"></script>
+</head>
+<body>
+	用户名：<input type="text" id="s_num" name="s_num"><br>
+	密码：	<input type="password" id="s_new_pwd" name="s_new_pwd"><br>
+	<button>发送</button>
+	<script type="text/javascript">
+		var st={
+			"s_num":"wori",
+			"s_new_pwd":"123465"
+		};
+		$('button').click(function(){
+			
+			$.ajax({
+	            type:"get",
+	            url:"/modifyPwd",
+	            data:{"suc":"123"},
+	            success:function(data,textStatus){
+	                if(data.result){
+	                    alert('成功');
+	                }
+	                console.log(textStatus);
+	            },
+	            error:function(XMLHttpRequest,textStatus,errorThrown){
+	                console.log(textStatus);
+	                console.log(errorThrown);
+	            }
+	        });
+		})
+	</script>
+
+	<!-- <form method="post" action="/modifyPwd">
+		用户名：<input type="text" name="s_num"><br>
+		密码：	<input type="password" name="s_new_pwd"><br>
+		<input type="submit" value="提交">
+	</form> -->
+</body>
+</html>

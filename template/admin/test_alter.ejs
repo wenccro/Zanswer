@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>试题修改</title>
+		
+		<!--自己的css/js-->
+    	<link rel="stylesheet" type="text/css" href="../css/answer.css" />
+    	
+    	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+    	<script src="../js/jquery.min.js" type="text/javascript"></script>
+    	<script src="../js/bootstrap.min.js" type="text/javascript"></script>
+    	
+    	<!--富文本-->
+	  	<script type="text/javascript" charset="UTF-8" src="/ueditor/ueditor.config.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="/ueditor/ueditor.all.min.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+		
+		 <meta name="viewport" content="width=device-width, initial-scale=1">
+    	 <link rel="stylesheet" href="../css/bootstrap.tu.css">  
+    	
+    	<!--jquery ui-->
+	  	 <link rel="stylesheet" href="../css/jquery-ui.css">
+	  	 <link rel="stylesheet" href="../css/style.css">
+		 <script src="../js/jquery-1.11.3.js"></script>
+		 <script src="../js/jquery-ui.js"></script>
+	</head>
+	<body>
+		<div>
+			<a href="/admin" class="btn btn-info btn-lg">
+          		<span class="glyphicon glyphicon-share-alt"></span> 返回
+        	</a>
+		</div>
+		<div class="ti_s_add-page">
+			<h3 class="text-center">试题管理-修改</h3>
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+				    <label for="inputPassword" class="col-sm-2 control-label">课程名称</label>
+				    <div class="col-sm-8">
+				     	<span class="c_name test_x"></span> 
+				    </div>
+			  	</div>
+			  	<div class="form-group">
+				    <label for="inputPassword" class="col-sm-2 control-label">章节名称</label>
+				    <div class="col-sm-8">
+				     <span class="ch_name test_x"></span>
+				    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword" class="col-sm-2 control-label">题目</label>
+			    <div class="col-sm-8">
+					<textarea id="content_ti" name="content_ti" style="height: 200px; width: 590px;"></textarea>
+					<!--实例化一个富文本框-->
+					<script type="text/javascript">
+						var ue_ti=UE.getEditor('content_ti');
+					</script>
+				</div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword" class="col-sm-2 control-label">选项-A</label>
+			    <div class="col-sm-8">
+					<textarea id="content_a" name="content_a" style="height: 200px; width: 590px;"></textarea>
+					<!--实例化一个富文本框-->
+					<script type="text/javascript">
+						var ue_a=UE.getEditor('content_a');
+					</script>
+				</div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword" class="col-sm-2 control-label">B</label>
+			    <div class="col-sm-8">
+					<textarea id="content_b" name="content_b" style="height: 200px; width: 590px;"></textarea>
+					<!--实例化一个富文本框-->
+					<script type="text/javascript">
+						var ue_b=UE.getEditor('content_b');
+					</script>
+				</div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword" class="col-sm-2 control-label">C</label>
+			    <div class="col-sm-8">
+					<textarea id="content_c" name="content_c" style="height: 200px; width: 590px;"></textarea>
+					<!--实例化一个富文本框-->
+					<script type="text/javascript">
+						var ue_c=UE.getEditor('content_c');
+					</script>
+				</div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword" class="col-sm-2 control-label">D</label>
+			    <div class="col-sm-8">
+					<textarea id="content_d" name="content_d" style="height: 200px; width: 590px;"></textarea>
+					<!--实例化一个富文本框-->
+					<script type="text/javascript">
+						var ue_d=UE.getEditor('content_d');
+					</script>
+				</div>
+			  </div>
+			  <div class="form-group">
+				    <label for="inputPassword" class="col-sm-2 control-label">正确答案</label>
+				    <div class="col-sm-8">
+				      <select class="select_at" >
+						<option value="A">A</option>
+						<option value="B">B</option>
+						<option value="C">C</option>
+						<option value="D">D</option>
+					  </select>
+				    </div>
+			  	</div>
+			  	<div class="form-group">
+				    <label for="inputPassword" class="col-sm-2 control-label">解析</label>
+				    <div class="col-sm-8">
+						<textarea id="content2" name="content2" style="height: 200px; width: 590px;"></textarea>
+						<!--实例化一个富文本框-->
+						<script type="text/javascript">
+							var ue_e=UE.getEditor('content2');
+						</script>
+					</div>
+			  	</div>
+			</form>
+			<div class="cz">
+	            <button class="btn btn-default alter_save">保存</button>
+	            <button class="quxiao btn btn-default"><a href="/admin" style="color:#000; text-decoration: none;">取消</a></button>
+      		</div>
+		</div>
+		<script>
+			(function(){
+				var reg = new RegExp(/[^=]+/g);//^以什么开头，匹配全部   
+				var r = window.location.search.substr(1).match(reg); 
+				var t_id=parseInt(r[1]);
+				//console.log(t_id);
+				//发送id去拉去相应的数据
+				$.ajax({
+					type:"post",
+					url:"/admin/test_alter",
+					data:{"t_id":t_id},
+					async:true,
+					success:function(data){
+						console.log(data.data);
+						$(".c_name").text(data.data[0].c_name);
+						$(".ch_name").text(data.data[0].ch_name);
+						var ans=data.data[0].t_answer;
+						$(".select_at>option[value="+ans+"]").attr("selected","selected");
+						ue_ti.ready(function() { 
+							ue_ti.setContent(data.data[0].t_title); 
+						});
+						ue_a.ready(function(){
+							ue_a.setContent(data.data[0].t_option_a);
+						});
+						ue_b.ready(function(){
+							ue_b.setContent(data.data[0].t_option_b);
+						});
+						ue_c.ready(function(){
+							ue_c.setContent(data.data[0].t_option_c);
+						});
+						ue_c.ready(function(){
+							ue_c.setContent(data.data[0].t_option_c);
+						});
+						ue_d.ready(function(){
+							ue_d.setContent(data.data[0].t_option_d);
+						});
+						ue_e.ready(function(){
+							ue_e.setContent(data.data[0].t_explain);
+						});
+					}
+				});
+				//去拿去修改好的数据
+				//点击保存
+				$(".alter_save").click(function(){
+					//拿到试题的具体内容
+					var title=UE.getEditor('content_ti').getContent();//带格式内容,题目
+					var t_a=UE.getEditor('content_a').getContent();//带格式，选项a
+					var t_b=UE.getEditor('content_b').getContent();//带格式,选项b
+					var t_c=UE.getEditor('content_c').getContent();//带格式,选项c
+					var t_d=UE.getEditor('content_d').getContent();//带格式,选项d
+					var t_an=$(".select_at option:selected").val();//拿到正确答案
+					var t_ex=UE.getEditor('content2').getContent();//带格式，解析
+					if(title!=''&&t_a!=''&&t_b!=''&&t_c!=''&&t_d!=''&&t_an!=''){
+						$.ajax({
+							type:"post",
+							url:"/admin/test_alter_up",
+							data:{
+								"t_id":t_id,
+								"title":title,
+								"t_a":t_a,
+								"t_b":t_b,
+								"t_c":t_c,
+								"t_d":t_d,
+								"t_an":t_an,
+								"t_ex":t_ex
+							},
+							async:true,
+							success:function(data){
+								if(data.result==1){
+									alert("修改成功");
+									window.location='/admin'
+								}else{
+									alert("修改失败");
+									window.location='/admin'
+								}
+							}
+						});
+					}else{
+						alert("题目和选项不能修改为空");
+					}
+					
+				})
+				
+			})()
+		</script>
+	</body>
+</html>

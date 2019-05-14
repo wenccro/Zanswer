@@ -1,0 +1,641 @@
+.hide{
+	display: none;
+}
+.toggler {
+	    width: 1000px;
+	}
+#effect {
+    position: relative;
+    width: 240px;
+    height: 135px;
+    padding: 0.4em;
+}
+#effect h3 {
+    margin: 0;
+    padding: 0.4em;
+    text-align: center;
+}
+#effect2 {
+    position: relative;
+    width: 240px;
+    height: 135px;
+    padding: 0.4em;
+}
+#effect2 h3 {
+    margin: 0;
+    padding: 0.4em;
+    text-align: center;
+}
+
+.c_zuo{
+	text-align: center;
+	margin-top: 35px;
+}
+.c_zuo button{
+	line-height: 13px!important;
+}
+#zj_c p{
+	text-align: center;
+}
+#zj_c p>a:hover{
+	cursor: pointer;
+	text-decoration: none;
+	background-color: #F2CACB;
+}
+#zj_j p{
+	text-align: center;
+}
+#zj_j p>a:hover{
+	cursor: pointer;
+	text-decoration: none;
+	background-color: #F2CACB;
+}
+.stu_page{
+	text-align: center;
+}
+.stu_page>ul{
+	margin-top: 20px;
+}
+.stu_page>ul>li{
+	cursor: pointer;
+	margin-left: 2px;
+	padding: 9px 0px;
+}
+.stu_page>ul>li>a{
+	cursor: pointer;
+}
+/*分页二*/
+.stu_page2{
+	text-align: center;
+}
+.stu_page2>ul{
+	margin-top: 20px;
+}
+.stu_page2>ul>li{
+	cursor: pointer;
+	margin-left: 2px;
+	padding: 9px 0px;
+	width: 55px;
+}
+.stu_page2>ul>li>a{
+	cursor: pointer;
+}
+.pagination_2 {
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+.pagination_2>li{
+	float: left;
+	list-style: none;
+	background-color: #cfc;
+	border-radius: 5px;
+}
+.pagination_2 a{
+	text-decoration: none;
+}
+.pagination_2 a:hover{
+	text-decoration: none;
+}
+/*选中样式*/
+.active2{
+	background-color: #F0ad4e!important;
+	color: #fff;
+	z-index: 2;
+    cursor: default;
+}
+/*添加遮罩层*/
+.shadow {
+	position:fixed; 
+	width:100%; 
+	height:100%; 
+	background:#000; 
+	opacity:0.3; 
+	filter:alpha(opacity:30);
+	left:0;
+	top: 0;
+}
+/*添加整个修饰层*/
+.re_dage{
+	width: 35%;
+	height: 200px;	
+	
+	border:1px solid black; 
+	background:#CCCCCC; 
+	position:fixed; 
+	left:25%; 
+	top:25%; 
+	margin-top:-50px;
+	z-index: 100;
+	text-align: center;
+}
+.re_dage>h3{
+	margin-top: 20px;
+	margin-bottom: 25px;
+}
+.re_dage>b{
+	margin-right: 60px;
+}
+.cz{
+	margin-top: 40px;
+}
+.cz>button{
+	margin-right: 15px;
+}
+/*为增加设置层*/
+.add_page{
+	width: 35%;
+	height: 300px;	
+	overflow-y: auto;
+	border:1px solid black; 
+	background:#CCCCCC; 
+	position:fixed; 
+	left:25%; 
+	top:25%; 
+	margin-top:-50px;
+	z-index: 100;
+	text-align: center;
+}
+.add_page tbody>tr>td{
+	text-align: center;
+	margin: 0 auto;
+}
+.add_page caption{
+	font-size: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.add_red{
+	color: #f00;
+}
+/*导入框*/
+.lend_into_c{
+	width: 35%;
+	height: 200px;
+	border:1px solid black; 
+	background:#CCCCCC; 
+	position:fixed; 
+	left:25%; 
+	top:30%; 
+	margin-top:-50px;
+	z-index: 100;
+	text-align: center;
+	overflow-x: hidden;
+}
+.cz_lend{
+	width: 100%;
+	height: 30px;
+	margin-top: 80px;
+}
+
+/*搜索*/
+.seek_page{
+	width: 45%;
+	height: 300px;	
+	overflow-y: auto;
+	border:1px solid black; 
+	background:#CCCCCC; 
+	position:fixed; 
+	left:25%; 
+	top:25%; 
+	margin-top:-50px;
+	z-index: 100;
+	text-align: center;
+}
+/*删除*/
+.delete_page{
+	width: 25%;
+	height: 200px;
+	overflow-y: auto;
+	border: 1px solid black;
+	border-radius: 10px;
+	background: #CCCCCC;
+	position: fixed;
+	left: 35%;
+	top: 35%;
+	margin-top: -50px;
+	z-index: 100;
+	text-align: center;
+}
+/*详情*/
+.detail_page{
+	width: 45%;
+	height: 400px;
+	overflow-y: auto;
+	scrollbar-base-color: #FFCC66;
+	border:1px solid black; 
+	background:#CCCCCC; 
+	position:fixed; 
+	left:25%; 
+	top:25%; 
+	margin-top:-50px;
+	z-index: 100;
+	text-align: center;
+}
+.detail_page caption{
+	font-size: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.panel-body{
+	text-align: center;
+}
+.panel-body>div{
+	background-color: #FFCACA;
+	margin-bottom: 5px;
+}
+/*题库管理*/
+/*课程管理 增加*/
+.ti_k_add-page{
+	width: 55%;
+	height: 400px;
+	overflow-y: auto;
+	border:1px solid black; 
+	background:#CCCCCC; 
+	position:fixed; 
+	left:25%; 
+	top:20%; 
+	margin-top:-50px;
+	z-index: 100;
+	text-align: center;
+	overflow-x: hidden;
+}
+.ti_k_alter-page{
+	width: 55%;
+	height: 400px;
+	overflow-y: auto;
+	border:1px solid black; 
+	background:#CCCCCC; 
+	position:fixed; 
+	left:25%; 
+	top:30%; 
+	margin-top:-50px;
+	z-index: 100;
+	text-align: center;
+	overflow-x: hidden;
+}
+/*章节管理*/
+.ti_z_add-page{
+	width: 51%;
+	height: 350px;
+	overflow-y: auto;
+	border:1px solid black; 
+	background:#CCCCCC; 
+	position:fixed; 
+	left:25%; 
+	top:30%; 
+	margin-top:-50px;
+	z-index: 100;
+	text-align: center;
+	overflow-x: hidden;
+}
+/*章节下拉选择*/
+.select_zj{
+	width: 100%;
+	height: 30px;
+	border-radius: 3px;
+}
+/*课程下拉选择*/
+.select_kx{
+	width: 104%;
+	height: 30px;
+	border-radius: 3px;
+}
+/*答案下拉选择*/
+.select_at{
+	width: 104%;
+	height: 30px;
+	border-radius: 3px;
+}
+.ti_z_alter-page{
+	width: 51%;
+	height: 350px;
+	overflow-y: auto;
+	border:1px solid black; 
+	background:#CCCCCC; 
+	position:fixed; 
+	left:25%; 
+	top:30%; 
+	margin-top:-50px;
+	z-index: 100;
+	text-align: center;
+	overflow-x: hidden;
+}
+.form-control{
+	width: 82% !important;
+}
+
+
+/*试题管理*/
+/*导入*/
+.ti_s_lead-page{
+	width: 45%;
+	height: 250px;
+	overflow-y: auto;
+	border:1px solid black; 
+	background:#CCCCCC; 
+	position:fixed; 
+	left:25%; 
+	top:30%; 
+	margin-top:-50px;
+	z-index: 100;
+	text-align: center;
+	overflow-x: hidden;
+}
+/*导出*/
+.ti_s_export-page{
+	width: 45%;
+	height: 250px;
+	overflow-y: auto;
+	border:1px solid black; 
+	background:#CCCCCC; 
+	position:fixed; 
+	left:25%; 
+	top:30%; 
+	margin-top:-50px;
+	z-index: 100;
+	text-align: center;
+	overflow-x: hidden;
+}
+/*增加*/
+.ti_s_add-page{
+	width: 60%;
+	margin: 0 auto;
+	background:#CCCCCC; 
+	text-align: center;
+	overflow-x: hidden;
+}
+/*填空题导入*/
+.ti_t_lead-page{
+	width: 45%;
+	height: 250px;
+	overflow-y: auto;
+	border:1px solid black; 
+	background:#CCCCCC; 
+	position:fixed; 
+	left:25%; 
+	top:30%; 
+	margin-top:-50px;
+	z-index: 100;
+	text-align: center;
+	overflow-x: hidden;
+}
+/*增加*/
+.ti_t_add-page{
+	width: 60%;
+	margin: 0 auto;
+	background:#CCCCCC; 
+	text-align: center;
+	overflow-x: hidden;
+}
+.ti_biao{
+	margin-top: 200px;
+    font-size: 25px;
+    color: #4C5114
+}
+.item_an{
+	line-height: 100px;
+	font-size: 20px;
+}
+/*每一空*/
+.eve_fill{
+	border: 2px solid #000;
+}
+.eve_fill>div>i{
+	margin-right: 28px;
+}
+.eve_fill>p{
+	width: 100px;
+	line-height: 25px;
+	border: 1px solid #F99E07;
+	border-radius: 5px;
+	background-color: #F99E07;
+	cursor: pointer;
+	margin: 0 auto;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	color: #fff;
+	padding: 0px 3px;
+}
+/*每一个空*/
+.fill_color{
+	color: #000;
+	font-size: 25px;
+}
+.fill_color:hover{
+	color: #f00;
+	border: 2px solid #f00;
+	border-radius: 50%;
+}
+/*每一个空里不同的答案*/
+.gl_color{
+	color: #fff;
+    background-color: #000;
+    padding: 7px 5px;
+    margin-left: 5px;;
+}
+.gl_color:hover{
+	background-color: #f00;
+	cursor: pointer;
+}
+.text_an{
+	margin-top: 5px;
+	height: 30px;
+	 width: 440px;
+}
+/*添加答案按钮*/
+.add_answer{
+	padding: 10px;
+	border: 1px solid #000;
+	border-radius: 5px;
+	background-color: #ddd;
+	margin: 0 auto;
+	width: 250px;
+}
+.add_answer:hover{
+	cursor: pointer;
+}
+/*修改*/
+/*.ti_s_alter-page{
+	width: 45%;
+	height: 600px;
+	overflow-y: auto;
+	border:1px solid black; 
+	background:#CCCCCC; 
+	position:fixed; 
+	left:25%; 
+	top:15%; 
+	margin-top:-50px;
+	z-index: 100;
+	text-align: center;
+	overflow-x: hidden;
+}*/
+/*判断页面*/
+.ti_p_add-page{
+	width: 60%;
+	margin: 0 auto;
+	background:#CCCCCC; 
+	text-align: center;
+	overflow-x: hidden;
+}
+/*判断题   答案区域*/
+.pan_answer{
+	width:500px;
+	height: 80px;
+	margin: 0 auto;
+	text-align: center;
+}
+.pan_answer>div.radio{
+	width: 50%;
+	float: left;
+	margin: 0 auto;
+}
+.pan_answer>div>label{
+	width: 50%;
+	margin-top: 20px;
+	height: 34px;
+}
+.pan_answer>div>label>input{
+	margin-right: 15px;
+	width: 30px;
+	height: 30px;
+}
+.pan_answer>div>label>b{
+	font-size: 20px;
+	margin-left: 20px;
+	line-height: 34px;
+}
+/*查看学生学习情况，按学期查找*/
+.st_yuan_class{
+	width: 100px;
+	float: left;
+}
+.st_yuan_class>ul>li{
+	cursor: pointer;
+}
+/*为学生信息table里面的tbody添加样式*/
+.st_tbody{
+	text-align: center;
+}
+#st table>thead th{
+	text-align: center;
+}
+
+/*所有试题分页*/
+.fen_page{
+	text-align: center;
+}
+.fen_page>ul{
+	margin-top: 20px;
+}
+.fen_page>ul>li{
+	cursor: pointer;
+}
+.fen_page>ul>li>a{
+	cursor: pointer;
+}
+
+.test_x{
+	height:30px;
+	color:#000;
+	text-align: center;
+}
+.pagination_1 {
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+.pagination_1>li{
+	float: left;
+	list-style: none;
+	background-color: #fff;
+	border-radius: 5px;
+}
+.pagination_1 a{
+	text-decoration: none;
+}
+.pagination_1 a:hover{
+	text-decoration: none;
+}
+/*选中样式*/
+.active1{
+	background-color: #F0ad4e!important;
+	color: #fff;
+	z-index: 2;
+    cursor: default;
+}
+
+/*课程匹配*/
+.st_yuan{
+	width: 650px;
+}
+.st_yuan div{
+	width: 200px;
+	float: left;
+	margin: 5px 0px;
+	margin-right: 10px;
+}
+.st_yuan div:nth-child(odd){
+	background-color: #F0AD4E;
+}
+.st_yuan div:nth-child(even){
+	background-color: #71F903;
+}
+
+/*课程匹配*/
+.st_course_kc{
+	width: 250px;
+	border-radius: 3px;
+}
+#st_course table>thead>tr>th{
+	text-align: center;
+}
+.st_course_cc{
+	text-align: center;
+}
+/*为正确率和综合分数排名*/
+.rank_table>thead>tr>th{
+	position: relative;
+}
+.rank_table>thead>tr>th>i.fa-caret-up{
+	position: absolute;
+	top: 0px;
+	right: 45px;
+	cursor: pointer;
+}
+.rank_table>thead>tr>th>i.fa-caret-down{
+	position: absolute;
+	top: 12px;
+	right: 45px;
+	cursor: pointer;
+}
+.rank_table>thead>tr>th>i:hover{
+	color: red;
+}
+/*学生学习情况搜索页面*/
+.stu_seek_page{
+	width: 75%;
+	height: 200px;	
+	overflow-y: auto;
+	border:1px solid black; 
+	background:#CCCCCC; 
+	position:fixed; 
+	left:20%; 
+	top:12%; 
+	margin-top:-50px;
+	z-index: 100;
+	text-align: center;
+}
+.stu_seek_page caption{
+	font-size: 25px;
+}
+.stu_seek_page th{
+	text-align: center;
+}
+/*学生学习情况查询情况   搜索结果*/
+.stu_com{
+	text-align: center;
+}

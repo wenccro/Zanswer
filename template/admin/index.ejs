@@ -1,0 +1,836 @@
+<!DOCTYPE html PUBLIC >
+<html >
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>学神记</title>
+    <!--自己的css/js-->
+    <link rel="stylesheet" type="text/css" href="css/answer.css" />
+   	
+   	<!--<link rel="stylesheet" type="text/css" href="../css/reset.css" media="screen" />-->
+    <!--<link rel="stylesheet" type="text/css" href="../css/text.css" media="screen" />-->
+    <link rel="stylesheet" type="text/css" href="../css/grid.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../css/layout.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../css/nav.css" media="screen" />
+    <!--图标-->
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+    <script src="../js/jquery.min.js" type="text/javascript"></script>
+    <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+    
+    <!--jquery ui-->
+  	 <link rel="stylesheet" href="../css/jquery-ui.css">
+  	 <link rel="stylesheet" href="../css/style.css">
+	 <script src="../js/jquery-1.11.3.js" type="text/javascript"></script>
+	 <script src="../js/jquery-ui.js" type="text/javascript"></script>
+       	
+</head>
+<body>
+    <div class="container_12">
+        <div class="grid_12 header-repeat">
+            <div id="branding">
+                <div class="floatleft">
+                    <b style="font-size: 25px; color: #fff;">学神记后台管理系统</b></div>
+                <div class="floatright">
+                    <div class="floatleft">
+                        <img src="img/img-profile.jpg" alt="Profile Pic" /></div>
+                    <div class="floatleft marginleft10">
+                        <ul class="inline-ul floatleft">
+                            <li>Hello Admin</li>
+                            <li><a href="#">Config</a></li>
+                            <li><a href="/admin/logout" class="logout">Logout</a></li>
+                        </ul>
+                        <br />
+                        <span class="small grey">Last Login: 3 hours ago</span>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        <div class="grid_12">
+            <ul class="nav main">
+                <li class="ic-dashboard" style="margin-right: 20px;"><a href="#"><span>首页</span></a> </li>
+                <li class="ic-form-style"><a href="javascript:"><span>学生信息管理</span></a></li>
+                <li class="ic-grid-tables"><a href="javascript:"><span>题库管理</span></a></li>
+                <li class="ic-charts"><a href="javascript:"><span>查看学生学习状况</span></a></li>
+                <li class="ic-grid-tables"><a href="javascript:"><span>学生评论区管理</span></a></li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_2">
+            <div class="box sidemenu" id="tt">
+			     <!--测试11-->
+			    <div class="panel-group" id="accordion">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse"  class="menuitem"
+									 href="#collapseOne">
+									学生信息管理
+								</a>
+							</h4>
+						</div>
+						<div id="collapseOne" class="panel-collapse collapse.in">
+							<div class="panel-body">
+								<div id="student_g">学生基本信息</div>
+                                <div class="sectio_s_k">课程匹配</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" 
+								   href="#collapseTwo">
+									题库管理
+								</a>
+							</h4>
+						</div>
+						<div id="collapseTwo" class="panel-collapse collapse.in">
+							<div class="panel-body">
+                                <div class="sectio_ti_k">课程管理</div>
+                                <div class="sectio_ti_z">章节管理</div>
+                                <div class="sectio_ti_s">单选管理</div>
+                                <div class="sectio_ti_t">填空管理</div>
+                                <div class="sectio_ti_p">判断管理</div>
+                                <div class="sectio_ti_g">改错管理</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" 
+								   href="#collapseThree">
+									查看学生学习情况
+								</a>
+							</h4>
+						</div>
+						<div id="collapseThree" class="panel-collapse collapse.in">
+							<div class="panel-body">
+                                <div id="stu_yuan" class="stu_class">按学期查看</div>
+                                <div id="stu_class" class="stu_class">按班级查看</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-warning">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" 
+								   href="#collapseFour">
+									学生评论管理
+								</a>
+							</h4>
+						</div>
+						<div id="collapseFour" class="panel-collapse collapse.in">
+							<div class="panel-body">
+                                <div id="stu_discuss" class="stu_class">学生评论</div>
+							</div>
+						</div>
+					</div>
+	
+				</div>	
+			     <!--测试结束-->
+            </div>
+        </div>
+       
+        <!--具体的每一个选项的具体内容-->
+        <div class="grid_10">
+            <div class="box round first">
+            	<!--课程管理页面-->
+  				<div id="gl_k" class="toggler hide">
+				 	<table class="table table-striped table-bordered table-hover">
+					  	<caption class="text-center" style="font-size: 20px;">课程管理</caption>
+					  	<p><button class="btn ti_k_add" style="float: right;">增加课程</button></p>
+					  	<thead>
+						    <tr>
+						      <th><input type="checkbox"/>全选</th>
+						      <th>宣传图片</th>
+						      <th>课程名称</th>
+						      <th>学年</th>
+						      <th>学期</th>
+						      <th>开发时间段</th>
+						      <th>操作</th>
+						    </tr>
+					  	</thead>
+					  	<!--课程内容-->
+					  	<tbody class="c_tbody"></tbody>
+					</table
+					<!--课程管理增加-->
+					<div class="ti_k_add-page hide">
+						<h3 class="text-center">课程管理-增加</h3>
+						<form class="form-horizontal" role="form">
+						  	<div class="form-group">
+							    <label class="col-sm-2 control-label">课程图片</label>
+							    <div class="col-sm-10">
+							      <p class="form-control-static">
+							      	<input type="file" name="c_img">
+							      </p>
+							    </div>
+						  	</div>
+						  	<div class="form-group">
+							    <label for="inputPassword" class="col-sm-2 control-label">课程名称</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" id="c_name" placeholder="请课程名称">
+							    </div>
+						  	</div>
+						  	<div class="form-group">
+							    <label for="inputPassword" class="col-sm-2 control-label">学年</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" id="c_year" placeholder="2017-2018">
+							    </div>
+						  	</div>
+						  	<div class="form-group">
+							    <label for="inputPassword" class="col-sm-2 control-label">学期</label>
+							    <div class="col-sm-8">
+							      <select class="select_kx c_add_select">
+									<option value="-1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+								  </select>
+							    </div>
+						  	</div>
+						  	<div class="form-group">
+							    <label for="inputPassword" class="col-sm-2 control-label">开发时间段</label>
+							    <div class="col-sm-10">
+							      	<label for="from">从</label>
+									<input type="text" class="from" name="from" id="c_open_time">
+									<label for="to">到</label>
+									<input type="text" class="to" name="to" id="c_close_time">
+							    </div>
+						  	</div>
+						</form>
+						<div class="cz">
+				            <button class="btn btn-default c_save">保存</button>
+				            <button class="c_quxiao btn btn-default">取消</button>
+		          		</div>
+					</div>
+					<!--课程管理-修改-->
+					<div class="ti_k_alter-page hide">
+						<h3 class="text-center">课程管理-修改</h3>
+						<form class="form-horizontal" role="form">
+						  <div class="form-group">
+						    <label class="col-sm-2 control-label">课程图片</label>
+						    <div class="col-sm-10">
+						      <p class="form-control-static">
+						      	<input type="file" id="alter_img" name="alter_img">
+						      </p>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="inputPassword" class="col-sm-2 control-label">课程名称</label>
+						    <div class="col-sm-10">
+						      <input type="text" class="form-control" id="alter_kc" placeholder="请课程名称">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="inputPassword" class="col-sm-2 control-label">学年</label>
+						    <div class="col-sm-10">
+						      <input type="text" class="form-control" id="alter_xn" placeholder="2017-2018">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="inputPassword" class="col-sm-2 control-label">学期</label>
+						    <div class="col-sm-8">
+						      <select class="select_kx c_alter_select" >
+								<option value="-1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+							  </select>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="inputPassword" class="col-sm-2 control-label">开发时间段</label>
+						    <div class="col-sm-10">
+						      	<label for="from">从</label>
+								<input type="text" class="from" name="from" id="alter_fi">
+								<label for="to">到</label>
+								<input type="text" class="to" name="to" id="alter_la">
+						    </div>
+						  </div>
+						</form>
+						<div class="cz">
+				            <button class="btn btn-default c_alter">修改</button>
+				            <button class="c_quxiao btn btn-default">取消</button>
+		          		</div>
+					</div>
+				</div>
+				
+				<!--章节管理-->
+				<div id="gl_z" class="toggler hide">
+				  	<table class="table table-striped table-bordered table-hover">
+					  <caption class="text-center" style="font-size: 20px;">章节管理</caption>
+					   <p><button class="btn ti_z_add" style="float: right;">增加章节</button></p>
+					  <thead>
+					    <tr>
+					      <th><input type="checkbox"/>全选</th>
+					      <th>章节名称</th>
+					      <th>所属课程</th>
+					      <th>题目数量</th>
+					      <th>开发时间段</th>
+					      <th>操作</th>
+					    </tr>
+					  </thead>
+					  <!--章节的内容-->
+					  <tbody class="z_tbody"></tbody>
+					</table>
+					<div class="z_zuo">
+						<div class="btn-group btn-group-lg">
+							<button type="button" class="btn btn-danger" style="line-height: 1px;">删除所选</button>
+						</div>
+					</div>
+					<!--章节管理 增加-->
+					<div class="ti_z_add-page hide">
+						<h3 class="text-center">章节管理-增加</h3>
+						<form class="form-horizontal" role="form">
+						   <div class="form-group">
+						    <label for="inputPassword" class="col-sm-2 control-label">课程名称</label>
+						    <div class="col-sm-8">
+						    	<!--根据添加的课程来动态添加-->
+						      <select class="select_zj" ></select>
+						    </div>
+						  </div>
+						  
+						  <div class="form-group">
+						    <label for="inputPassword" class="col-sm-2 control-label">章节序号</label>
+						    <div class="col-sm-10">
+						      <!--<input type="text" class="form-control" id="inputPassword" placeholder="第一章">-->
+						      	<p class="zj_num" style="width: 370px; height: 15px;line-height: 35px;"></p>
+						    </div>
+						  </div>
+						  
+						  <div class="form-group">
+						    <label for="inputPassword" class="col-sm-2 control-label">章节名称</label>
+						    <div class="col-sm-10">
+						      <input type="text" class="form-control" id="zj_name" placeholder="章节名字">
+						    </div>
+						  </div>
+						  
+						  <div class="form-group">
+						    <label for="inputPassword" class="col-sm-2 control-label">开发时间段</label>
+						    <div class="col-sm-10">
+						      	<div class="col-sm-10">
+							      	<label for="from">从</label>
+									<input id="z_open_time" type="text" class="from" name="from">
+									<label for="to">到</label>
+									<input id="z_close_time" type="text" class="to" name="to">
+						    	</div>
+						    </div>
+						  </div>
+						  
+						</form>
+						<div class="cz">
+				            <button class="btn btn-default z_save">保存</button>
+				            <button class="z_quxiao btn btn-default">取消</button>
+		          		</div>
+					</div>
+					<!--章节管理 修改-->
+					<div class="ti_z_alter-page hide">
+						<h3 class="text-center">课程管理-修改</h3>
+						<form class="form-horizontal" role="form">
+						   <div class="form-group">
+						    <label for="inputPassword" class="col-sm-2 control-label">课程名称</label>
+						    <div class="col-sm-10">
+						      	<p class="zj_name" style="width: 370px; height: 15px;line-height: 35px;"></p>
+						    </div>
+						  </div>
+						  
+						  <div class="form-group">
+						    <label for="inputPassword" class="col-sm-2 control-label">章节序号</label>
+						    <div class="col-sm-10">
+						      	<p class="zj_num" style="width: 370px; height: 15px;line-height: 35px;"></p>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="inputPassword" class="col-sm-2 control-label">章节名称</label>
+						    <div class="col-sm-10">
+						      <input id="zj_name_alter" type="text" class="form-control">
+						    </div>
+						  </div>
+						  
+						  <div class="form-group">
+						    <label for="inputPassword" class="col-sm-2 control-label">开发时间段</label>
+						    <div class="col-sm-10">
+						        <div class="col-sm-10">
+							      	<label for="from">从</label>
+									<input id="alter_zj_open" type="text" class="from" name="from">
+									<label for="to">到</label>
+									<input id="alter_zj_close" type="text" class="to" name="to">
+						        </div>
+						    </div>
+						  </div>
+						</form>
+						<div class="cz">
+				            <button class="btn btn-default zj_alter">修改</button>
+				            <button class="zj_quxiao btn btn-default">取消</button>
+		          		</div>
+					</div>
+				</div>
+				<!--试题单选管理科-->
+				<div id="gl_s" class="toggler hide">
+					<table class="table table-striped table-bordered table-hover">
+					  <caption class="text-center" style="font-size: 20px;">单选试题管理</caption>
+					  <p style="float: left; margin-right: 10px;"><button class="btn ti_s_lead" >导入</button></p>
+					  <p style="float: left; "><button class="btn ti_s_export" >导出</button></p>
+					  <p><button class="btn ti_s_add" style="float: right;"><a href="/admin/test_add" style="color:#fff;text-decoration: none">增加试题</a></button></p>
+					  <thead>
+					    <tr>
+					      <th><input type="checkbox"/>全选</th>
+					      <th>题干</th>
+					      <th>所属章节</th>
+					      <th>所属课程</th>
+					      <th>分值</th>
+					      <th>难度系数</th>
+					      <th>操作</th>
+					    </tr>
+					  </thead>
+					  <tbody class="t_tbody"></tbody>
+					</table>
+					<div class="test_page fen_page">
+						<ul class="pagination pagination-lg">
+						    <li class="left_test"><a><<</a></li>
+						    <li><a>1</a></li>
+						    <li><a>2</a></li>
+						    <li><a>3</a></li>
+						    <li><a>4</a></li>
+						    <li><a>5</a></li>
+						    <li class="right_test"><a>>></a></li>
+						</ul>
+					</div>
+					<!--单选试题管理-导入-->
+					<div class="ti_s_lead-page hide">
+						<h2 style="padding-top: 20px;">选择文件</h2>
+						<div class="col-sm-10">
+					      <p class="form-control-static">
+					      	<input type="file" id="inputfile_ts" name="fileTrans_ts"/>
+					      </p>
+					  </div>
+						<div class="cz">
+				            <button class="btn btn-default lend_test">导入</button>
+				            <button class="t_quxiao btn btn-default">取消</button>
+		          		</div>
+					</div>
+					<!--试题管理-导出-->
+					<div class="ti_s_export-page hide">
+						<h3 class="text-center">试题管理-导出</h3>
+						<form class="form-horizontal" role="form">
+							<div class="form-group">
+							    <label for="inputPassword" class="col-sm-2 control-label">课程名称</label>
+							    <div class="col-sm-8">
+							      <select class="select_zj" >
+									<option value="-1">计算机基础</option>
+									<option value=>C语言</option>
+								  </select>
+							    </div>
+						  </div>
+						  <div class="form-group">
+							    <label for="inputPassword" class="col-sm-2 control-label">章节名称</label>
+							    <div class="col-sm-8">
+							      <select class="select_zj" >
+									<option value="-1">第一章</option>
+									<option value=>第二章</option>
+								  </select>
+							    </div>
+						  </div>
+						</form>
+						<div class="cz">
+				            <button class="btn btn-default">导出</button>
+				            <button class="quxiao btn btn-default"><a href="index.html">取消</a></button>
+				            <button class="btn btn-default">导出套卷</button>
+		          		</div>
+					</div>
+				</div>
+				<!--试题填空管理页面-->
+				<div id="ti_t_fillblank" class="toggler hide">
+					<table class="table table-striped table-bordered table-hover">
+					  <caption class="text-center" style="font-size: 20px;">填空题管理</caption>
+					  <p style="float: left; margin-right: 10px;"><button class="btn ti_t_lead" >导入</button></p>
+					  <p style="float: left; "><button class="btn ti_t_export" >导出</button></p>
+					  <p><button class="btn ti_t_add" style="float: right;"><a href="/admin/test_fill_add" style="color:#fff;text-decoration: none">增加填空题</a></button></p>
+					  <thead>
+					    <tr>
+					      <th><input type="checkbox"/>全选</th>
+					      <th>题干</th>
+					      <th>所属章节</th>
+					      <th>所属课程</th>
+					      <th>操作</th>
+					    </tr>
+					  </thead>
+					  <tbody class="tian_tbody"></tbody>
+					</table>
+					<div class="fill_page fen_page">
+						<ul class="pagination pagination-lg">
+						    <li class="left_test"><a><<</a></li>
+						    <li><a>1</a></li>
+						    <li><a>2</a></li>
+						    <li><a>3</a></li>
+						    <li><a>4</a></li>
+						    <li><a>5</a></li>
+						    <li class="right_test"><a>>></a></li>
+						</ul>
+					</div>
+					<!--填空题试题管理-导入-->
+					<div class="ti_t_lead-page hide">
+						<h2 style="padding-top: 20px;">选择文件</h2>
+						<div class="col-sm-10">
+					      <p class="form-control-static">
+					      	<input type="file" id="inputfile_ts_t" name="fileTrans_ts"/>
+					      </p>
+					  </div>
+						<div class="cz">
+				            <button class="btn btn-default lend_test_t">导入</button>
+				            <button class="t_quxiao_t btn btn-default">取消</button>
+		          		</div>
+					</div>
+				</div>
+				<!--判断题试题管理页面-->
+				<div id="ti_p_judge" class="toggler hide">
+					<table class="table table-striped table-bordered table-hover">
+					  <caption class="text-center" style="font-size: 20px;">判断题管理</caption>
+					  <p style="float: left; margin-right: 10px;"><button class="btn ti_p_lead" >导入</button></p>
+					  <p style="float: left; "><button class="btn ti_p_export" >导出</button></p>
+					  <p><button class="btn ti_p_add" style="float: right;"><a href="/admin/test_judge_add" style="color:#fff;text-decoration: none">增加判断题</a></button></p>
+					  <thead>
+					    <tr>
+					      <th><input type="checkbox"/>全选</th>
+					      <th>题干</th>
+					      <th>所属章节</th>
+					      <th>所属课程</th>
+					      <th>操作</th>
+					    </tr>
+					  </thead>
+					  <tbody class="pan_tbody"></tbody>
+					</table>
+					<div class="pan_page fen_page">
+						<ul class="pagination pagination-lg">
+						    <li class="left_test"><a><<</a></li>
+						    <li><a>1</a></li>
+						    <li><a>2</a></li>
+						    <li><a>3</a></li>
+						    <li><a>4</a></li>
+						    <li><a>5</a></li>
+						    <li class="right_test"><a>>></a></li>
+						</ul>
+					</div>
+					<!--单选试题管理-导入-->
+					<div class="ti_p_lead-page hide">
+						<h2 style="padding-top: 20px;">选择文件</h2>
+						<div class="col-sm-10">
+					      <p class="form-control-static">
+					      	<input type="file" id="inputfile_ts_t" name="fileTrans_ts"/>
+					      </p>
+					  </div>
+						<div class="cz">
+				            <button class="btn btn-default lend_test_p">导入</button>
+				            <button class="t_quxiao_t btn btn-default">取消</button>
+		          		</div>
+					</div>
+				</div>
+				<!--改错管理页面-->
+				<div id="ti_g_fillblank" class="toggler hide">
+					<table class="table table-striped table-bordered table-hover">
+					  <caption class="text-center" style="font-size: 20px;">改错题管理</caption>
+					  <p style="float: left; margin-right: 10px;"><button class="btn ti_g_lead" >导入</button></p>
+					  <p style="float: left; "><button class="btn ti_g_export" >导出</button></p>
+					  <p><button class="btn ti_t_add" style="float: right;"><a href="/admin/test_reform_add" style="color:#fff;text-decoration: none">增加改错题</a></button></p>
+					  <thead>
+					    <tr>
+					      <th><input type="checkbox"/>全选</th>
+					      <th>题干</th>
+					      <th>所属章节</th>
+					      <th>所属课程</th>
+					      <th>操作</th>
+					    </tr>
+					  </thead>
+					  <tbody class="gai_tbody"></tbody>
+					</table>
+					<div class="reform_page fen_page">
+						<ul class="pagination pagination-lg">
+						    <li class="left_test"><a><<</a></li>
+						    <li><a>1</a></li>
+						    <li><a>2</a></li>
+						    <li><a>3</a></li>
+						    <li><a>4</a></li>
+						    <li><a>5</a></li>
+						    <li class="right_test"><a>>></a></li>
+						</ul>
+					</div>
+					<!--填空题试题管理-导入-->
+					<div class="ti_g_lead-page hide">
+						<h2 style="padding-top: 20px;">选择文件</h2>
+						<div class="col-sm-10">
+					      <p class="form-control-static">
+					      	<input type="file" id="inputfile_ts_t" name="fileTrans_ts"/>
+					      </p>
+					  </div>
+						<div class="cz">
+				            <button class="btn btn-default lend_test_g">导入</button>
+				            <button class="t_quxiao_g btn btn-default">取消</button>
+		          		</div>
+					</div>
+				</div>
+				<!--学生信息管理页面-->
+				<div id="st" class="toggler hide">
+					<h3 class="text-center">学生信息管理</h3>
+					<table class="table table-hover"> 
+					  <thead>
+					    <tr>
+					      <th><input type="checkbox" />全选</th>
+					      <th>学号</th>
+					      <th>班级</th>
+					      <th>姓名</th>
+					      <th>操作</th>
+					    </tr>
+					  </thead>
+					  <!--学生管理信息的具体内容-->
+					  <tbody class="st_tbody"></tbody>
+					</table>
+					<!--学生信息管理页面的  操作页-->
+					<div class="c_zuo">
+						<div class="btn-group btn-group-lg">
+							<button type="button" class="btn btn-danger delete_x" style="line-height: 1px;">删除所选</button>
+							<button type="button" class="btn btn-danger reset_x" style="margin-left: 5px; line-height: 1px;">修改所选</button>
+						    <button type="button" class="btn btn-default add" style="line-height: 1px;">增加</button>
+						    <button type="button" class="btn btn-default lend_into" style="line-height: 1px;">导入</button>
+						</div>
+						<div class="btn-group btn-group-lg">
+				            <input type="text" placeholder="学号/姓名" style="float: left;height: 34px;border-radius: 4px;background-color: #FFE8A1;">
+				            <button type="button" class="btn btn-default seek">搜索</button>
+				        </div>
+					</div>
+					<div class="stu_page">
+						<ul class="pagination_1 pagination-lg">
+						    <li><a><<</a></li>
+						    <li class="active1"><a>1</a></li>
+						    <li><a>2</a></li>
+						    <li><a>3</a></li>
+						    <li><a>4</a></li>
+						    <li><a>5</a></li>
+						    <li><a>>></a></li>
+						</ul>
+					</div>
+				</div>
+				<!--为修改/增加页面留出遮罩层-->
+				<div id="blindstroy"></div>
+				<!--制作修改界面-->
+				<div class="re_dage hide">
+					<h3>学生信息修改</h3>
+					<b style="font-size: 20px;text-align: center;margin-left: 20px; color: #F00;">密码</b>
+					<div class="cz">
+			            <button class="btn reset">重置</button>
+			            <button class="quxiao_re btn btn-default">取消</button>
+		          	</div>
+				</div>
+				<!--制作增加页面-->
+				<div class="add_page hide">
+					<table class="table">
+					  <caption>增加学生信息</caption>
+					  <tbody>
+					    <tr>
+					      <td>学号</td>
+					      <td><input type="text" class="input-sm" name="s_num"/></td>
+					    </tr>
+					    <tr>
+					      <td>班级</td>
+					      <td><input type="text" class="input-sm" name="s_class"/></td>
+					    </tr>
+					    <tr>
+					      <td>姓名</td>
+					      <td><input type="text" class="input-sm" name="s_name"/></td>
+					    </tr>
+					  </tbody>
+					</table>
+					<div class="cz">
+			            <button class="add_save btn btn-default">保存</button>
+			            <button class="quxiao_ad btn btn-default">取消</button>
+		          	</div>
+				</div>
+				<!--制作搜索层-->
+				<div class="seek_page hide">
+					<table class="table table-bordered">
+					  <caption>搜索结果</caption>
+					  <thead>
+					    <tr>
+					      <th>学号</th>
+					      <th>名字</th>
+					      <th>密码</th>
+					      <th>操作</th>
+					    </tr>
+					  </thead>
+					  <!--搜索结果显示-->
+					  <tbody></tbody>
+					</table>
+					<div class="cz">
+			            <button class="quxiao_se btn btn-default">取消</button>
+		          	</div>
+				</div>
+				<!--导入 操作-->
+				<div class="lend_into_c hide">
+					<h2 style="padding-top: 20px;">选择文件</h2>
+					<div class="col-sm-10">
+				      <p class="form-control-static">
+				      	<input type="file" id="inputfile" name="fileTrans"/>
+				      </p>
+				   </div>
+				    <div class="cz_lend">
+			            <button class="lend_save btn btn-default">保存</button>
+			            <button class="lend_q btn btn-default">取消</button>
+		          	</div>
+
+				</div>
+				<!--学生课程匹配-->
+				<div id="st_course" class="toggler hide">
+					<h3 class="text-center">学生课程匹配</h3>
+					<table class="table table-hover table-bordered">
+						<thead>
+							<tr>
+								<th>院系</th>
+								<th>课程</th>
+							</tr>
+						</thead>
+						<!--具体的内容-->
+						<tbody class="st_course_cc"></tbody>
+					</table>
+				</div>
+				<!--查看学生学习情况-->
+				<div id="st_yuan" class="toggler hide">
+					<div class="dropdown st_yuan_class">
+						<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">选择科目<span class="caret"></span></button>
+						<!--将课程动态添加早这里-->
+						<ul class="dropdown-menu" id="lean_item"></ul>
+					</div>
+					<div class="dropdown st_yuan_class">
+						<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">选择学年<span class="caret"></span></button>
+						<!--添加学年-->
+						<ul class="dropdown-menu" id="lean_year"></ul>
+					</div>
+					<div class="dropdown st_yuan_class">
+						<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">选择学期<span class="caret"></span></button>
+						<ul class="dropdown-menu" id="lean_term">
+							<li>1</li>
+							<li>2</li>
+							<li>3</li>
+						</ul>
+					</div>
+					<div style="float:right">
+						<div class="btn-group btn-group-lg">
+				            <input type="text" class="stu_seek_input" placeholder="学号/姓名" style="float: left;height: 34px;border-radius: 4px;background-color: #FFE8A1;">
+				            <button type="button" class="btn btn-default stu_seek" style="line-height: 1px;">搜索</button>
+				        </div>
+				    </div>
+					<h3 class="text-center xue_nian" style="clear: both;padding-top: 20px;"><b></b>--<b></b>学年第<b></b>学期</h3>
+					<table class="table table-hover rank_table"> 
+					  <thead>
+					    <tr>
+					      <th>学号</th>
+					      <th>班级</th>
+					      <th>姓名</th>
+					      <th>正确率
+					      	<i value='1' class="fa fa-caret-up" style="font-size:24px"></i>
+					      	<i value='2' class="fa fa-caret-down" style="font-size:24px"></i>
+					      </th>
+					      <th>做题/总题</th>
+					      <th>综合测评
+					      	<i value='3' class="fa fa-caret-up" style="font-size:24px"></i>
+					      	<i value='4' class="fa fa-caret-down" style="font-size:24px"></i>
+					      </th>
+					      <th>排名</th>
+					    </tr>
+					  </thead>
+					  <!--试题内容-->
+					  <tbody class="test_tbody"></tbody>
+					</table>
+					<!--分页-->
+				  	<div class="stu_page2">
+						<ul class="pagination_2">
+						    <li><a><<</a></li>
+						    <li class="active2"><a>1</a></li>
+						    <li><a>2</a></li>
+						    <li><a>3</a></li>
+						    <li><a>4</a></li>
+						    <li><a>5</a></li>
+						    <li><a>>></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="stu_seek_page hide">
+					<table class="table table-bordered">
+					  <caption>搜索结果</caption>
+					  <thead>
+					    <tr>
+					      <th>学号</th>
+					      <th>班级</th>
+					      <th>姓名</th>
+					      <th>正确率</th>
+					      <th>做题/总题</th>
+					      <th>综合测评</th>
+					      <th>排名</th>
+					    </tr>
+					  </thead>
+					  <!--搜索结果显示-->
+					  <tbody class="stu_sti_steek"></tbody>
+					</table>
+					<div class="cz">
+			            <button class="stu_qu btn btn-default">取消</button>
+		          	</div>
+				</div>
+				
+				<!--查看班级学习情况-->
+				<div id="st_class" class="toggler hide">
+					<h3 class="text-center">班级学习情况</h3>
+					<h1 style="margin-top: 50px;text-align: center; color: #F99703;">程序员小哥哥还在开发中.....</h1>
+					<!--<table class="table table-hover"> 
+					  <thead>
+					    <tr>
+					      <th><input type="checkbox" />全选</th>
+					      <th>班级</th>
+					      <th>操作</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <td><input type="checkbox" /></td>
+					      <td>B15221</td>
+					      <td><button class="btn detail">详情</button></td>
+					    </tr>
+					    <tr>
+					      <td><input type="checkbox" /></td>
+					      <td>B15222</td>
+					      <td><button class="btn">详情</button></td>
+					    </tr>
+					  </tbody>
+					</table>-->
+				</div>
+				
+				<!--详情页面-->
+				<!--<div class="detail_page hide">
+					<table class="table table-bordered">
+					  <caption>xxx班</caption>
+					  <tbody>
+					  	<tr>
+					      <td>学号</td>
+					      <td>姓名</td>
+					      <td>正确率</td>
+					      <td>排名</td>
+					    </tr>
+					    <tr>
+					      <td>251055</td>
+					      <td>xxx</td>
+					      <td>10%</td>
+					      <td>10</td>
+					    </tr>
+					  </tbody>
+					</table>
+					<div class="cz">
+			            <button class="btn btn-default"><a href="index.ejs">返回</a></button>
+		          	</div>
+				</div>-->
+            </div>
+        </div>
+        
+        <!--导入自己写的所有请求数据-->
+        <!--拿到所有内容的数据-->
+        <script type="text/javascript" src="js/y_stu_info.js"></script>
+</body>
+</html>
